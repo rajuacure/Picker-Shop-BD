@@ -156,3 +156,342 @@ width:100%;
 }
 
 }
+/*==============================
+Tablet
+==============================*/
+
+@media (max-width:768px){
+
+.header{
+
+padding:0;
+
+}
+
+.logo img{
+
+height:48px;
+
+}
+
+.hero{
+
+padding:60px 0;
+
+}
+
+.hero-content h1{
+
+font-size:38px;
+
+line-height:1.3;
+
+}
+
+.hero-content p{
+
+font-size:16px;
+
+}
+
+.section-title h2{
+
+font-size:30px;
+
+}
+
+.section-title p{
+
+font-size:15px;
+
+}
+
+.product-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+gap:20px;
+
+}
+
+.category-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+gap:20px;
+
+}
+
+.features-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.testimonial-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.footer-grid{
+
+grid-template-columns:1fr;
+
+text-align:center;
+
+}
+
+.social-icons{
+
+justify-content:center;
+
+}
+
+.offer-content h2{
+
+font-size:34px;
+
+}
+
+.newsletter h2{
+
+font-size:32px;
+
+}
+
+.newsletter input{
+
+width:100%;
+
+}
+
+}
+
+/*==============================
+Mobile
+==============================*/
+
+@media (max-width:576px){
+
+.container{
+
+width:92%;
+
+}
+
+.header .container{
+
+height:70px;
+
+}
+
+.logo img{
+
+height:42px;
+
+}
+
+.header-icons{
+
+gap:15px;
+
+}
+
+.header-icons a{
+
+font-size:18px;
+
+}
+
+.hero{
+
+padding:40px 0;
+
+}
+
+.hero-content h1{
+
+font-size:30px;
+
+}
+
+.hero-content p{
+
+font-size:15px;
+
+}
+
+.btn{
+
+width:100%;
+
+text-align:center;
+
+padding:14px;
+
+}
+
+.section-title{
+
+margin-bottom:35px;
+
+}
+
+.section-title h2{
+
+font-size:26px;
+
+}
+
+.category-grid{
+
+grid-template-columns:1fr 1fr;
+
+gap:15px;
+
+}
+
+.category-card{
+
+padding:18px;
+
+}
+
+.category-card img{
+
+width:55px;
+
+}
+
+.category-card h3{
+
+font-size:15px;
+
+}
+
+.product-grid{
+
+grid-template-columns:1fr;
+
+gap:20px;
+
+}
+
+.product-card img{
+
+height:230px;
+
+}
+
+.product-card h3{
+
+font-size:18px;
+
+}
+
+.price{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:5px;
+
+}
+
+.feature-box{
+
+padding:25px;
+
+}
+
+.feature-box i{
+
+font-size:38px;
+
+}
+
+.feature-box h3{
+
+font-size:20px;
+
+}
+
+.testimonial-card{
+
+padding:25px;
+
+}
+
+.offer-content h2{
+
+font-size:28px;
+
+}
+
+.offer-content p{
+
+font-size:15px;
+
+}
+
+.newsletter{
+
+padding:60px 0;
+
+}
+
+.newsletter h2{
+
+font-size:28px;
+
+}
+
+.newsletter p{
+
+font-size:15px;
+
+}
+
+.newsletter form{
+
+gap:15px;
+
+}
+
+.footer{
+
+padding:60px 0 20px;
+
+}
+
+.footer h3{
+
+font-size:20px;
+
+}
+
+.footer p,
+
+.footer li{
+
+font-size:15px;
+
+}
+
+#backToTop{
+
+width:45px;
+
+height:45px;
+
+right:18px;
+
+bottom:18px;
+
+font-size:18px;
+
+}
+
+}
