@@ -1,0 +1,58 @@
+Picker-Shop-BD/
+│
+├── index.html
+├── products.html
+├── product.html
+├── cart.html
+├── checkout.html
+├── order-success.html
+├── login.html
+├── register.html
+├── dashboard.html
+├── profile.html
+├── firebase.js
+│
+├── admin/
+│   ├── login.html
+│   ├── dashboard.html
+│   ├── products.html
+│   ├── add-product.html
+│   ├── edit-product.html
+│   ├── orders.html
+│   ├── users.html
+│   └── settings.html
+│
+├── css/
+│   ├── style.css
+│   ├── responsive.css
+│   ├── admin.css
+│   ├── dashboard.css
+│   ├── login.css
+│   ├── checkout.css
+│   └── product.css
+│
+├── js/
+│   ├── app.js
+│   ├── auth.js
+│   ├── products.js
+│   ├── product.js
+│   ├── cart.js
+│   ├── checkout.js
+│   ├── dashboard.js
+│   ├── profile.js
+│   ├── admin-auth.js
+│   ├── admin-dashboard.js
+│   ├── admin-products.js
+│   ├── admin-orders.js
+│   ├── admin-users.js
+│   └── admin-settings.js
+│
+├── images/
+│   ├── logo.png
+│   ├── banner.jpg
+│   ├── placeholder.png
+│   ├── products/
+│   ├── banners/
+│   └── icons/
+│
+└── README.md
