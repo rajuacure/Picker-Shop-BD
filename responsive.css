@@ -495,3 +495,264 @@ font-size:18px;
 }
 
 }
+/*==============================
+Mobile Menu Overlay
+==============================*/
+
+.mobile-menu-overlay{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(0,0,0,.45);
+
+opacity:0;
+
+visibility:hidden;
+
+transition:.35s;
+
+z-index:998;
+
+}
+
+.mobile-menu-overlay.active{
+
+opacity:1;
+
+visibility:visible;
+
+}
+
+/*==============================
+Extra Small Devices
+==============================*/
+
+@media (max-width:400px){
+
+.hero-content h1{
+
+font-size:26px;
+
+}
+
+.section-title h2{
+
+font-size:22px;
+
+}
+
+.logo img{
+
+height:38px;
+
+}
+
+.header-icons{
+
+gap:12px;
+
+}
+
+.category-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.category-card{
+
+padding:20px;
+
+}
+
+.category-card img{
+
+width:60px;
+
+}
+
+.product-card img{
+
+height:210px;
+
+}
+
+.product-card h3{
+
+font-size:17px;
+
+}
+
+.new-price{
+
+font-size:20px;
+
+}
+
+.old-price{
+
+font-size:14px;
+
+}
+
+.newsletter h2{
+
+font-size:24px;
+
+}
+
+.newsletter p{
+
+font-size:14px;
+
+}
+
+.newsletter input{
+
+padding:15px;
+
+font-size:14px;
+
+}
+
+.newsletter button{
+
+padding:15px;
+
+font-size:15px;
+
+}
+
+}
+
+/*==============================
+Landscape Mobile
+==============================*/
+
+@media (max-height:500px) and (orientation:landscape){
+
+.hero{
+
+padding:30px 0;
+
+}
+
+.navbar{
+
+overflow-y:auto;
+
+}
+
+}
+
+/*==============================
+Disable Heavy Animation
+==============================*/
+
+@media (max-width:768px){
+
+.hero-image img{
+
+animation:none;
+
+}
+
+.product-card:hover,
+
+.category-card:hover,
+
+.feature-box:hover,
+
+.testimonial-card:hover{
+
+transform:none;
+
+}
+
+}
+
+/*==============================
+Responsive Utility
+==============================*/
+
+.hide-mobile{
+
+display:block;
+
+}
+
+.show-mobile{
+
+display:none;
+
+}
+
+@media (max-width:768px){
+
+.hide-mobile{
+
+display:none !important;
+
+}
+
+.show-mobile{
+
+display:block !important;
+
+}
+
+}
+
+/*==============================
+Print Style
+==============================*/
+
+@media print{
+
+.header,
+.footer,
+#backToTop,
+.menu-toggle,
+.mobile-menu-overlay{
+
+display:none !important;
+
+}
+
+body{
+
+background:#fff;
+
+color:#000;
+
+}
+
+.container{
+
+width:100%;
+
+max-width:100%;
+
+}
+
+a{
+
+text-decoration:none;
+
+color:#000;
+
+}
+
+}
+
+/*==============================
+Responsive CSS Complete
+==============================*/
