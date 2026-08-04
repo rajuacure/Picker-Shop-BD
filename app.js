@@ -278,3 +278,177 @@ document.querySelectorAll(".product-card").forEach(card => {
     });
 
 });
+/*==========================
+Hero Slider (Auto)
+==========================*/
+
+const heroSlides = document.querySelectorAll(".hero-slide");
+let currentSlide = 0;
+
+function showHeroSlide(index) {
+
+    if (!heroSlides.length) return;
+
+    heroSlides.forEach(slide => {
+
+        slide.classList.remove("active");
+
+    });
+
+    heroSlides[index].classList.add("active");
+
+}
+
+if (heroSlides.length > 0) {
+
+    showHeroSlide(currentSlide);
+
+    setInterval(() => {
+
+        currentSlide++;
+
+        if (currentSlide >= heroSlides.length) {
+
+            currentSlide = 0;
+
+        }
+
+        showHeroSlide(currentSlide);
+
+    }, 5000);
+
+}
+
+/*==========================
+Search Filter
+==========================*/
+
+const searchInput = document.querySelector("#searchInput");
+
+if (searchInput) {
+
+    searchInput.addEventListener("keyup", function () {
+
+        const value = this.value.toLowerCase();
+
+        document.querySelectorAll(".product-card").forEach(product => {
+
+            const title = product.querySelector("h3").innerText.toLowerCase();
+
+            if (title.includes(value)) {
+
+                product.style.display = "block";
+
+            } else {
+
+                product.style.display = "none";
+
+            }
+
+        });
+
+    });
+
+}
+
+/*==========================
+Cart Counter
+==========================*/
+
+function updateCartCount() {
+
+    const counter = document.querySelector(".cart-count");
+
+    if (!counter) return;
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    counter.textContent = cart.length;
+
+}
+
+updateCartCount();
+
+/*==========================
+Newsletter Validation
+==========================*/
+
+const newsletterForm = document.querySelector(".newsletter form");
+
+if (newsletterForm) {
+
+    newsletterForm.addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        const email = this.querySelector("input").value.trim();
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(email)) {
+
+            alert("Please enter a valid email address.");
+
+            return;
+
+        }
+
+        alert("Thank you for subscribing!");
+
+        this.reset();
+
+    });
+
+}
+
+/*==========================
+Lazy Loading Images
+==========================*/
+
+const lazyImages = document.querySelectorAll("img[data-src]");
+
+if (lazyImages.length) {
+
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                const img = entry.target;
+
+                img.src = img.dataset.src;
+
+                img.removeAttribute("data-src");
+
+                observer.unobserve(img);
+
+            }
+
+        });
+
+    });
+
+    lazyImages.forEach(img => imageObserver.observe(img));
+
+}
+
+/*==========================
+Console Welcome
+==========================*/
+
+console.log("%cPicker Shop BD", "color:#16a34a;font-size:22px;font-weight:bold;");
+
+console.log("%cPremium Ecommerce Website Loaded Successfully.", "color:#444;font-size:14px;");
+
+/*==========================
+App Initialized
+==========================*/
+
+window.addEventListener("load", () => {
+
+    updateCartCount();
+
+    revealOnScroll();
+
+});
