@@ -610,3 +610,169 @@ console.log(
 /*==============================
 Products JS Complete
 ==============================*/
+/*=========================================
+Picker Shop BD
+Product Details JS
+Version : 1.0
+=========================================*/
+
+let product = null;
+let products = [];
+let quantity = 1;
+
+/*=========================================
+DOM Elements
+=========================================*/
+
+const title = document.getElementById("title");
+const pageTitle = document.getElementById("pageTitle");
+const productName = document.getElementById("productName");
+const breadcrumbProduct = document.getElementById("breadcrumbProduct");
+
+const currentPrice = document.getElementById("currentPrice");
+const oldPrice = document.getElementById("oldPrice");
+
+const shortDescription =
+document.getElementById("shortDescription");
+
+const productDescription =
+document.getElementById("productDescription");
+
+const mainImage =
+document.getElementById("mainImage");
+
+const thumbnailGallery =
+document.getElementById("thumbnailGallery");
+
+const stockStatus =
+document.getElementById("stockStatus");
+
+const productSKU =
+document.getElementById("productSKU");
+
+const productCategory =
+document.getElementById("productCategory");
+
+const specCategory =
+document.getElementById("specCategory");
+
+const ratingCount =
+document.getElementById("ratingCount");
+
+/*=========================================
+Get Product ID
+=========================================*/
+
+const params =
+new URLSearchParams(window.location.search);
+
+const productId =
+Number(params.get("id"));
+
+/*=========================================
+Load Products
+=========================================*/
+
+async function loadProduct(){
+
+try{
+
+const response =
+await fetch("data/products.json");
+
+products =
+await response.json();
+
+product =
+products.find(item=>item.id===productId);
+
+if(!product){
+
+window.location.href="products.html";
+
+return;
+
+}
+
+renderProduct();
+
+renderRelatedProducts();
+
+}
+
+catch(error){
+
+console.error(error);
+
+}
+
+}
+
+/*=========================================
+Render Product
+=========================================*/
+
+function renderProduct(){
+
+pageTitle.innerText =
+product.name + " | Picker Shop BD";
+
+title.innerText =
+product.name;
+
+productName.innerText =
+product.name;
+
+breadcrumbProduct.innerText =
+product.name;
+
+currentPrice.innerHTML =
+"৳" + product.price;
+
+oldPrice.innerHTML =
+"৳" + product.oldPrice;
+
+shortDescription.innerHTML =
+product.shortDescription;
+
+productDescription.innerHTML =
+product.description;
+
+stockStatus.innerHTML =
+product.stock
+? "In Stock"
+: "Out Of Stock";
+
+productSKU.innerHTML =
+product.sku;
+
+productCategory.innerHTML =
+product.category;
+
+specCategory.innerHTML =
+product.category;
+
+ratingCount.innerHTML =
+`(${product.rating})`;
+
+mainImage.src =
+product.image;
+
+/* Gallery */
+
+thumbnailGallery.innerHTML="";
+
+product.gallery.forEach(image=>{
+
+thumbnailGallery.innerHTML+=`
+
+<img
+src="${image}"
+class="thumb"
+onclick="changeImage('${image}')">
+
+`;
+
+});
+
+}
