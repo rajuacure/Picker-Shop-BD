@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Dashboard | Picker Shop BD</title>
+
+<meta name="description" content="User Dashboard - Picker Shop BD">
+
+<meta name="theme-color" content="#16a34a">
+
+<link rel="icon" href="images/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="css/auth.css">
+
+<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<!--========== Preloader ==========-->
+
+<div id="preloader">
+
+<div class="loader"></div>
+
+</div>
+
+<!--========== Header ==========-->
+
+<header class="header">
+
+<div class="container">
+
+<a href="index.html" class="logo">
+
+<img src="images/logo.png" alt="Picker Shop BD">
+
+</a>
+
+<nav class="navbar">
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="products.html">Products</a></li>
+
+<li><a href="dashboard.html" class="active">Dashboard</a></li>
+
+</ul>
+
+</nav>
+
+<div class="header-icons">
+
+<a href="cart.html">
+
+<i class="fas fa-shopping-cart"></i>
+
+<span class="cart-count">0</span>
+
+</a>
+
+</div>
+
+</div>
+
+</header>
+
+<!--========== Dashboard ==========-->
+
+<section class="dashboard">
+
+<div class="container">
+
+<div class="dashboard-layout">
+
+<!--========== Sidebar ==========-->
+
+<aside class="dashboard-sidebar">
+
+<div class="user-profile">
+
+<img
+
+id="dashboardPhoto"
+
+src="images/user.png"
+
+alt="User">
+
+<h3 id="dashboardName">
+
+Loading...
+
+</h3>
+
+<p id="dashboardEmail">
+
+Loading...
+
+</p>
+
+</div>
+
+<ul class="dashboard-menu">
+
+<li>
+
+<a href="#overview" class="active">
+
+<i class="fas fa-home"></i>
+
+Dashboard
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#orders">
+
+<i class="fas fa-box"></i>
+
+My Orders
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#wishlist">
+
+<i class="fas fa-heart"></i>
+
+Wishlist
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#address">
+
+<i class="fas fa-map-marker-alt"></i>
+
+Addresses
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#settings">
+
+<i class="fas fa-cog"></i>
+
+Settings
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#" id="logoutBtn">
+
+<i class="fas fa-sign-out-alt"></i>
+
+Logout
+
+</a>
+
+</li>
+
+</ul>
+
+</aside>
+
+<!--========== Dashboard Content ==========-->
+
+<div class="dashboard-content">
+
+<section id="overview">
+
+<h2>
+
+Dashboard Overview
+
+</h2>
+
+<div class="dashboard-stats">
+
+<div class="dashboard-card">
+
+<i class="fas fa-shopping-bag"></i>
+
+<h3 id="totalOrders">
+
+0
+
+</h3>
+
+<p>
+
+Total Orders
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<i class="fas fa-heart"></i>
+
+<h3 id="wishlistCount">
+
+0
+
+</h3>
+
+<p>
+
+Wishlist Items
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<i class="fas fa-money-bill-wave"></i>
+
+<h3 id="totalSpent">
+
+৳0
+
+</h3>
+
+<p>
+
+Total Spent
+
+</p>
+
+</div>
+
+</div>
+
+</section>
