@@ -221,3 +221,237 @@ console.log(
 });
 
 console.log("Auth Part 2 Loaded");
+/*=========================================
+Route Guard
+=========================================*/
+
+function requireLogin(){
+
+onAuthStateChanged(auth,(user)=>{
+
+if(!user){
+
+window.location.href="login.html";
+
+}
+
+});
+
+}
+
+function guestOnly(){
+
+onAuthStateChanged(auth,(user)=>{
+
+if(user){
+
+window.location.href="dashboard.html";
+
+}
+
+});
+
+}
+
+/*=========================================
+Email Verification Check
+=========================================*/
+
+function checkEmailVerification(){
+
+onAuthStateChanged(auth,(user)=>{
+
+if(!user) return;
+
+if(!user.emailVerified){
+
+showAlert(
+
+"Please verify your email before continuing."
+
+);
+
+}
+
+});
+
+}
+
+/*=========================================
+Dashboard User Information
+=========================================*/
+
+const dashboardName =
+get("dashboardName");
+
+const dashboardEmail =
+get("dashboardEmail");
+
+const dashboardPhoto =
+get("dashboardPhoto");
+
+onAuthStateChanged(auth,(user)=>{
+
+if(!user) return;
+
+if(dashboardName){
+
+dashboardName.textContent =
+
+user.displayName || "User";
+
+}
+
+if(dashboardEmail){
+
+dashboardEmail.textContent =
+
+user.email;
+
+}
+
+if(
+
+dashboardPhoto &&
+
+user.photoURL
+
+){
+
+dashboardPhoto.src =
+
+user.photoURL;
+
+}
+
+});
+
+/*=========================================
+Profile Dropdown
+=========================================*/
+
+const profileMenu =
+get("profileMenu");
+
+const profileToggle =
+get("profileToggle");
+
+if(profileMenu && profileToggle){
+
+profileToggle.addEventListener("click",()=>{
+
+profileMenu.classList.toggle("show");
+
+});
+
+document.addEventListener("click",(e)=>{
+
+if(
+
+!profileToggle.contains(e.target) &&
+
+!profileMenu.contains(e.target)
+
+){
+
+profileMenu.classList.remove("show");
+
+}
+
+});
+
+}
+
+/*=========================================
+Session Manager
+=========================================*/
+
+function getCurrentUser(){
+
+return auth.currentUser;
+
+}
+
+function isLoggedIn(){
+
+return auth.currentUser !== null;
+
+}
+
+/*=========================================
+Redirect Helpers
+=========================================*/
+
+function redirectIfLoggedIn(){
+
+if(isLoggedIn()){
+
+window.location.href="dashboard.html";
+
+}
+
+}
+
+function redirectIfLoggedOut(){
+
+if(!isLoggedIn()){
+
+window.location.href="login.html";
+
+}
+
+}
+
+/*=========================================
+Auto Route Protection
+=========================================*/
+
+const currentPage =
+
+window.location.pathname;
+
+if(
+
+currentPage.includes("dashboard")
+
+){
+
+requireLogin();
+
+}
+
+if(
+
+currentPage.includes("login") ||
+
+currentPage.includes("register")
+
+){
+
+guestOnly();
+
+}
+
+/*=========================================
+Auth Helpers
+=========================================*/
+
+window.authHelpers={
+
+getCurrentUser,
+
+isLoggedIn,
+
+requireLogin,
+
+guestOnly,
+
+redirectIfLoggedIn,
+
+redirectIfLoggedOut,
+
+checkEmailVerification
+
+};
+
+console.log("Auth Part 3 Loaded");
