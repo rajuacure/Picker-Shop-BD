@@ -455,3 +455,256 @@ checkEmailVerification
 };
 
 console.log("Auth Part 3 Loaded");
+/*=========================================
+Picker Shop BD
+Authentication System
+Part 4 (Final)
+=========================================*/
+
+import {
+
+updateProfile,
+
+updatePassword,
+
+reauthenticateWithCredential,
+
+EmailAuthProvider
+
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+/*=========================================
+Loading Helper
+=========================================*/
+
+function showLoading(button){
+
+if(!button) return;
+
+button.disabled = true;
+
+button.classList.add("loading");
+
+}
+
+function hideLoading(button){
+
+if(!button) return;
+
+button.disabled = false;
+
+button.classList.remove("loading");
+
+}
+
+/*=========================================
+Update Profile
+=========================================*/
+
+async function updateUserProfile(name){
+
+try{
+
+const user = auth.currentUser;
+
+if(!user) return false;
+
+await updateProfile(user,{
+
+displayName:name
+
+});
+
+showAlert("Profile updated successfully.");
+
+return true;
+
+}catch(error){
+
+console.error(error);
+
+showAlert(error.message);
+
+return false;
+
+}
+
+}
+
+/*=========================================
+Change Password
+=========================================*/
+
+async function changePassword(
+
+currentPassword,
+
+newPassword
+
+){
+
+try{
+
+const user = auth.currentUser;
+
+if(!user){
+
+showAlert("Please login first.");
+
+return false;
+
+}
+
+const credential =
+
+EmailAuthProvider.credential(
+
+user.email,
+
+currentPassword
+
+);
+
+await reauthenticateWithCredential(
+
+user,
+
+credential
+
+);
+
+await updatePassword(
+
+user,
+
+newPassword
+
+);
+
+showAlert("Password updated successfully.");
+
+return true;
+
+}catch(error){
+
+console.error(error);
+
+showAlert(error.message);
+
+return false;
+
+}
+
+}
+
+/*=========================================
+Global Error Handler
+=========================================*/
+
+function handleAuthError(error){
+
+const code = error.code || "";
+
+switch(code){
+
+case "auth/user-not-found":
+
+showAlert("No account found.");
+
+break;
+
+case "auth/wrong-password":
+
+showAlert("Incorrect password.");
+
+break;
+
+case "auth/email-already-in-use":
+
+showAlert("Email already registered.");
+
+break;
+
+case "auth/weak-password":
+
+showAlert("Password must be at least 6 characters.");
+
+break;
+
+case "auth/invalid-email":
+
+showAlert("Invalid email address.");
+
+break;
+
+case "auth/network-request-failed":
+
+showAlert("Network error. Please check your internet.");
+
+break;
+
+default:
+
+showAlert(error.message);
+
+}
+
+}
+
+/*=========================================
+Initialization
+=========================================*/
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+console.log("Authentication Initialized");
+
+});
+
+/*=========================================
+Export Helpers
+=========================================*/
+
+window.authService = {
+
+updateUserProfile,
+
+changePassword,
+
+getCurrentUser,
+
+isLoggedIn,
+
+requireLogin,
+
+guestOnly,
+
+redirectIfLoggedIn,
+
+redirectIfLoggedOut,
+
+checkEmailVerification,
+
+showLoading,
+
+hideLoading,
+
+handleAuthError
+
+};
+
+/*=========================================
+Authentication Ready
+=========================================*/
+
+console.log(
+
+"%cPicker Shop BD Authentication Ready",
+
+"color:#16a34a;font-size:16px;font-weight:bold;"
+
+);
+
+/*=========================================
+End Authentication System
+=========================================*/
