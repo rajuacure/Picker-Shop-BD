@@ -1027,3 +1027,247 @@ alert("Product link copied.");
 }
 
 }
+/*=========================================
+Related Products
+=========================================*/
+
+function renderRelatedProducts(){
+
+const relatedContainer =
+document.getElementById("relatedProducts");
+
+if(!relatedContainer) return;
+
+const related = products
+.filter(item =>
+item.category === product.category &&
+item.id !== product.id)
+.slice(0,4);
+
+relatedContainer.innerHTML = "";
+
+related.forEach(item=>{
+
+relatedContainer.innerHTML += `
+
+<div class="product-card">
+
+<div class="product-image">
+
+<img src="${item.image}" alt="${item.name}">
+
+</div>
+
+<div class="product-body">
+
+<p class="product-category">
+
+${item.category}
+
+</p>
+
+<h3 class="product-title">
+
+<a href="product.html?id=${item.id}">
+
+${item.name}
+
+</a>
+
+</h3>
+
+<div class="product-price">
+
+<span class="current-price">
+
+৳${item.price}
+
+</span>
+
+<span class="old-price">
+
+৳${item.oldPrice}
+
+</span>
+
+</div>
+
+<a
+href="product.html?id=${item.id}"
+class="btn">
+
+View Details
+
+</a>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+/*=========================================
+Product Tabs
+=========================================*/
+
+const tabButtons =
+document.querySelectorAll(".tab-btn");
+
+const tabContents =
+document.querySelectorAll(".tab-content");
+
+tabButtons.forEach(button=>{
+
+button.addEventListener("click",()=>{
+
+tabButtons.forEach(btn=>
+btn.classList.remove("active"));
+
+tabContents.forEach(tab=>
+tab.classList.remove("active"));
+
+button.classList.add("active");
+
+const tab =
+document.getElementById(
+button.dataset.tab
+);
+
+if(tab){
+
+tab.classList.add("active");
+
+}
+
+});
+
+});
+
+/*=========================================
+Dummy Reviews
+=========================================*/
+
+function loadReviews(){
+
+const reviewContainer =
+document.getElementById("reviewContainer");
+
+if(!reviewContainer) return;
+
+reviewContainer.innerHTML = `
+
+<div class="review-card">
+
+<h4>Rahim Ahmed</h4>
+
+<div class="stars">
+
+★★★★★
+
+</div>
+
+<p>
+
+Excellent quality product.
+
+Fast delivery and original item.
+
+</p>
+
+</div>
+
+<div class="review-card">
+
+<h4>Fatema Begum</h4>
+
+<div class="stars">
+
+★★★★★
+
+</div>
+
+<p>
+
+Very satisfied.
+
+Will purchase again.
+
+</p>
+
+</div>
+
+`;
+
+}
+
+/*=========================================
+Image Zoom
+=========================================*/
+
+if(mainImage){
+
+mainImage.addEventListener("mousemove",()=>{
+
+mainImage.style.transform="scale(1.25)";
+
+});
+
+mainImage.addEventListener("mouseleave",()=>{
+
+mainImage.style.transform="scale(1)";
+
+});
+
+}
+
+/*=========================================
+Initialization
+=========================================*/
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+loadProduct();
+
+loadReviews();
+
+if(typeof updateCartCount==="function"){
+
+updateCartCount();
+
+}
+
+});
+
+/*=========================================
+Performance
+=========================================*/
+
+window.addEventListener("pageshow",()=>{
+
+if(typeof updateCartCount==="function"){
+
+updateCartCount();
+
+}
+
+});
+
+/*=========================================
+Console
+=========================================*/
+
+console.log(
+
+"%cProduct Details Loaded Successfully",
+
+"color:#16a34a;font-size:16px;font-weight:bold;"
+
+);
+
+/*=========================================
+End Product JS
+=========================================*/
