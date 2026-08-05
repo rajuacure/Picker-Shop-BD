@@ -776,3 +776,254 @@ onclick="changeImage('${image}')">
 });
 
 }
+/*=========================================
+Change Main Image
+=========================================*/
+
+function changeImage(image){
+
+mainImage.src = image;
+
+document.querySelectorAll(".thumb").forEach(img=>{
+
+img.classList.remove("active");
+
+if(img.src.includes(image)){
+
+img.classList.add("active");
+
+}
+
+});
+
+}
+
+/*=========================================
+Quantity
+=========================================*/
+
+const quantityInput =
+document.getElementById("quantity");
+
+const increaseQty =
+document.getElementById("increaseQty");
+
+const decreaseQty =
+document.getElementById("decreaseQty");
+
+if(increaseQty){
+
+increaseQty.addEventListener("click",()=>{
+
+quantity++;
+
+quantityInput.value=quantity;
+
+});
+
+}
+
+if(decreaseQty){
+
+decreaseQty.addEventListener("click",()=>{
+
+if(quantity>1){
+
+quantity--;
+
+quantityInput.value=quantity;
+
+}
+
+});
+
+}
+
+if(quantityInput){
+
+quantityInput.addEventListener("change",()=>{
+
+let value=parseInt(quantityInput.value);
+
+if(isNaN(value)||value<1){
+
+value=1;
+
+}
+
+quantity=value;
+
+quantityInput.value=quantity;
+
+});
+
+}
+
+/*=========================================
+Add To Cart
+=========================================*/
+
+const addToCartBtn =
+document.getElementById("addToCart");
+
+if(addToCartBtn){
+
+addToCartBtn.addEventListener("click",()=>{
+
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+const existing =
+cart.find(item=>item.id===product.id);
+
+if(existing){
+
+existing.qty += quantity;
+
+}else{
+
+cart.push({
+
+...product,
+
+qty:quantity
+
+});
+
+}
+
+localStorage.setItem(
+
+"cart",
+
+JSON.stringify(cart)
+
+);
+
+if(typeof updateCartCount==="function"){
+
+updateCartCount();
+
+}
+
+addToCartBtn.innerHTML=
+
+'<i class="fas fa-check"></i> Added';
+
+setTimeout(()=>{
+
+addToCartBtn.innerHTML=
+
+'<i class="fas fa-shopping-cart"></i> Add To Cart';
+
+},1500);
+
+});
+
+}
+
+/*=========================================
+Buy Now
+=========================================*/
+
+const buyNowBtn =
+document.getElementById("buyNow");
+
+if(buyNowBtn){
+
+buyNowBtn.addEventListener("click",()=>{
+
+let checkout=[{
+
+...product,
+
+qty:quantity
+
+}];
+
+localStorage.setItem(
+
+"checkout",
+
+JSON.stringify(checkout)
+
+);
+
+window.location.href="checkout.html";
+
+});
+
+}
+
+/*=========================================
+Wishlist
+=========================================*/
+
+const wishlistBtn =
+document.getElementById("wishlistBtn");
+
+if(wishlistBtn){
+
+wishlistBtn.addEventListener("click",()=>{
+
+let wishlist=
+
+JSON.parse(localStorage.getItem("wishlist"))||[];
+
+const exists=
+
+wishlist.find(item=>item.id===product.id);
+
+if(!exists){
+
+wishlist.push(product);
+
+localStorage.setItem(
+
+"wishlist",
+
+JSON.stringify(wishlist)
+
+);
+
+}
+
+wishlistBtn.innerHTML=
+
+'<i class="fas fa-heart"></i> Added';
+
+});
+
+}
+
+/*=========================================
+Share Product
+=========================================*/
+
+function shareProduct(){
+
+if(navigator.share){
+
+navigator.share({
+
+title:product.name,
+
+text:product.shortDescription,
+
+url:window.location.href
+
+});
+
+}else{
+
+navigator.clipboard.writeText(
+
+window.location.href
+
+);
+
+alert("Product link copied.");
+
+}
+
+}
