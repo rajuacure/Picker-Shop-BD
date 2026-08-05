@@ -5,38 +5,33 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Products | Picker Shop BD</title>
 
-<meta name="description"
-content="Browse premium products from Picker Shop BD">
+<meta name="description" content="Buy premium products online from Picker Shop BD with fast delivery all over Bangladesh.">
 
-<link rel="icon"
-href="images/favicon.ico">
+<meta name="keywords" content="Picker Shop BD, Online Shopping, Bangladesh, Honey, Herbal, Tea">
 
-<link rel="stylesheet"
-href="css/style.css">
+<meta name="author" content="Picker Shop BD">
 
-<link rel="stylesheet"
-href="css/responsive.css">
+<meta name="theme-color" content="#16a34a">
 
-<link rel="stylesheet"
-href="css/product.css">
+<link rel="icon" href="images/favicon.png">
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="css/product.css">
+
+<link rel="stylesheet" href="css/responsive.css">
 
 </head>
 
@@ -56,16 +51,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="container">
 
-<div class="logo">
+<a href="index.html" class="logo">
 
-<a href="index.html">
-
-<img src="images/logo.png"
-alt="Picker Shop BD">
+<img src="images/logo.png" alt="Picker Shop BD">
 
 </a>
-
-</div>
 
 <nav class="navbar">
 
@@ -73,18 +63,13 @@ alt="Picker Shop BD">
 
 <li><a href="index.html">Home</a></li>
 
-<li><a class="active"
-href="products.html">
+<li><a href="products.html" class="active">Products</a></li>
 
-Products
+<li><a href="categories.html">Categories</a></li>
 
-</a></li>
+<li><a href="offers.html">Offers</a></li>
 
-<li><a href="#">Categories</a></li>
-
-<li><a href="#">Offers</a></li>
-
-<li><a href="#">Contact</a></li>
+<li><a href="contact.html">Contact</a></li>
 
 </ul>
 
@@ -92,11 +77,11 @@ Products
 
 <div class="header-icons">
 
-<a href="#">
+<button id="searchToggle">
 
 <i class="fas fa-search"></i>
 
-</a>
+</button>
 
 <a href="login.html">
 
@@ -104,23 +89,25 @@ Products
 
 </a>
 
-<a href="cart.html">
+<a href="wishlist.html">
 
-<i class="fas fa-shopping-cart"></i>
-
-<span class="cart-count">
-
-0
-
-</span>
+<i class="far fa-heart"></i>
 
 </a>
 
-<div class="menu-toggle">
+<a href="cart.html" class="cart-icon">
+
+<i class="fas fa-shopping-cart"></i>
+
+<span class="cart-count">0</span>
+
+</a>
+
+<button class="menu-toggle">
 
 <i class="fas fa-bars"></i>
 
-</div>
+</button>
 
 </div>
 
@@ -128,31 +115,29 @@ Products
 
 </header>
 
-<!--========== Page Banner ==========-->
+<!--========== Breadcrumb ==========-->
 
 <section class="page-banner">
 
 <div class="container">
 
-<h1>
+<h1>Our Products</h1>
 
-Our Products
+<nav class="breadcrumb">
 
-</h1>
+<a href="index.html">Home</a>
 
-<p>
+<span>/</span>
 
-Home /
+<span>Products</span>
 
-Products
-
-</p>
+</nav>
 
 </div>
 
 </section>
 
-<!--========== Products Section ==========-->
+<!--========== Products Area ==========-->
 
 <section class="products-page">
 
@@ -160,101 +145,71 @@ Products
 
 <div class="products-layout">
 
-<!-- Sidebar -->
+<!--========== Sidebar ==========-->
 
 <aside class="product-sidebar">
 
-<div class="sidebar-box">
+<div class="sidebar-card">
 
-<h3>
-
-Search
-
-</h3>
+<h3>Search</h3>
 
 <input
+
 type="text"
+
 id="searchInput"
-placeholder="Search Product...">
+
+placeholder="Search products...">
 
 </div>
 
-<div class="sidebar-box">
+<div class="sidebar-card">
 
-<h3>
-
-Categories
-
-</h3>
+<h3>Categories</h3>
 
 <ul class="category-list">
 
-<li data-category="all">
+<li data-category="all" class="active">All Products</li>
 
-All Products
+<li data-category="Honey">Honey</li>
 
-</li>
+<li data-category="Herbal">Herbal</li>
 
-<li data-category="Honey">
+<li data-category="Tea">Tea</li>
 
-Honey
+<li data-category="Oil">Oil</li>
 
-</li>
-
-<li data-category="Herbal">
-
-Herbal
-
-</li>
-
-<li data-category="Tea">
-
-Tea
-
-</li>
-
-<li data-category="Oil">
-
-Oil
-
-</li>
-
-<li data-category="Spices">
-
-Spices
-
-</li>
+<li data-category="Spices">Spices</li>
 
 </ul>
 
 </div>
 
-<div class="sidebar-box">
+<div class="sidebar-card">
 
-<h3>
-
-Price
-
-</h3>
+<h3>Maximum Price</h3>
 
 <input
+
 type="range"
+
+id="priceRange"
+
 min="100"
+
 max="10000"
-value="10000"
-id="priceRange">
+
+value="10000">
 
 <p>
 
-Max Price :
+Up To
 
-<span id="priceValue">
+<strong>
 
-10000
+৳<span id="priceValue">10000</span>
 
-</span>
-
-৳
+</strong>
 
 </p>
 
@@ -262,53 +217,37 @@ Max Price :
 
 </aside>
 
-<!-- Products -->
+<!--========== Product Content ==========-->
 
 <div class="products-content">
 
-<div class="products-top">
+<div class="products-toolbar">
 
-<div>
+<div class="results">
 
 Showing
 
-<span id="productCount">
+<strong id="productCount">
 
 0
 
-</span>
+</strong>
 
 Products
 
 </div>
 
-<div>
+<div class="toolbar-right">
 
 <select id="sortProducts">
 
-<option value="latest">
+<option value="latest">Latest</option>
 
-Latest
+<option value="low">Price: Low to High</option>
 
-</option>
+<option value="high">Price: High to Low</option>
 
-<option value="low">
-
-Price Low → High
-
-</option>
-
-<option value="high">
-
-Price High → Low
-
-</option>
-
-<option value="name">
-
-Name
-
-</option>
+<option value="name">Name (A-Z)</option>
 
 </select>
 
@@ -317,192 +256,11 @@ Name
 </div>
 
 <div
+
 class="product-grid"
+
 id="productsContainer">
 
-<!-- Firebase Products -->
+<!-- Dynamic Products -->
 
 </div>
-<!--========== Pagination ==========-->
-
-<div class="pagination">
-
-<button class="page-btn">
-
-<i class="fas fa-angle-left"></i>
-
-</button>
-
-<button class="page-btn active">1</button>
-
-<button class="page-btn">2</button>
-
-<button class="page-btn">3</button>
-
-<button class="page-btn">
-
-<i class="fas fa-angle-right"></i>
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!--========== Newsletter ==========-->
-
-<section class="newsletter">
-
-<div class="container">
-
-<h2>Subscribe Newsletter</h2>
-
-<p>
-
-নতুন অফার, ডিসকাউন্ট ও আপডেট সবার আগে পেতে সাবস্ক্রাইব করুন।
-
-</p>
-
-<form id="newsletterForm">
-
-<input
-
-type="email"
-
-placeholder="Enter your email"
-
-required>
-
-<button
-
-type="submit"
-
-class="btn">
-
-Subscribe
-
-</button>
-
-</form>
-
-</div>
-
-</section>
-
-<!--========== Footer ==========-->
-
-<footer class="footer">
-
-<div class="container">
-
-<div class="footer-grid">
-
-<div>
-
-<h3>Picker Shop BD</h3>
-
-<p>
-
-বাংলাদেশের বিশ্বস্ত অনলাইন শপিং প্ল্যাটফর্ম।
-
-</p>
-
-</div>
-
-<div>
-
-<h3>Quick Links</h3>
-
-<ul>
-
-<li><a href="index.html">Home</a></li>
-
-<li><a href="products.html">Products</a></li>
-
-<li><a href="cart.html">Cart</a></li>
-
-<li><a href="login.html">Login</a></li>
-
-</ul>
-
-</div>
-
-<div>
-
-<h3>Support</h3>
-
-<ul>
-
-<li>Email: support@pickershopbd.com</li>
-
-<li>Phone: +8801XXXXXXXXX</li>
-
-<li>Dhaka, Bangladesh</li>
-
-</ul>
-
-</div>
-
-<div>
-
-<h3>Follow Us</h3>
-
-<div class="social-icons">
-
-<a href="#"><i class="fab fa-facebook-f"></i></a>
-
-<a href="#"><i class="fab fa-instagram"></i></a>
-
-<a href="#"><i class="fab fa-youtube"></i></a>
-
-<a href="#"><i class="fab fa-linkedin-in"></i></a>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="copyright">
-
-<p>
-
-© 2026 Picker Shop BD. All Rights Reserved.
-
-</p>
-
-</div>
-
-</div>
-
-</footer>
-
-<!--========== Back To Top ==========-->
-
-<button id="backToTop">
-
-<i class="fas fa-arrow-up"></i>
-
-</button>
-
-<!--========== Mobile Menu Overlay ==========-->
-
-<div class="mobile-menu-overlay"></div>
-
-<!--========== JavaScript ==========-->
-
-<script type="module" src="firebase.js"></script>
-
-<script type="module" src="js/app.js"></script>
-
-<script type="module" src="js/products.js"></script>
-
-</body>
-
-</html>
