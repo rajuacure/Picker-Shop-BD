@@ -418,3 +418,195 @@ btn.innerHTML="Add To Cart";
 },1500);
 
 });
+/*==============================
+Pagination
+==============================*/
+
+let currentPage = 1;
+
+const productsPerPage = 9;
+
+function paginateProducts(products){
+
+const start = (currentPage - 1) * productsPerPage;
+
+const end = start + productsPerPage;
+
+return products.slice(start,end);
+
+}
+
+function renderPagination(products){
+
+const pagination = document.querySelector(".pagination");
+
+if(!pagination) return;
+
+const totalPages = Math.ceil(products.length / productsPerPage);
+
+pagination.innerHTML = "";
+
+if(totalPages <= 1) return;
+
+for(let i=1;i<=totalPages;i++){
+
+const button = document.createElement("button");
+
+button.className = "page-btn";
+
+button.textContent = i;
+
+if(i===currentPage){
+
+button.classList.add("active");
+
+}
+
+button.addEventListener("click",()=>{
+
+currentPage = i;
+
+renderProducts(paginateProducts(filteredProducts));
+
+renderPagination(filteredProducts);
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+});
+
+pagination.appendChild(button);
+
+}
+
+}
+
+/*==============================
+Override Render Products
+==============================*/
+
+const originalRender = renderProducts;
+
+renderProducts = function(products){
+
+originalRender(paginateProducts(products));
+
+renderPagination(products);
+
+};
+
+/*==============================
+Loading Skeleton
+==============================*/
+
+function showLoading(){
+
+if(!productsContainer) return;
+
+productsContainer.innerHTML="";
+
+for(let i=0;i<6;i++){
+
+productsContainer.innerHTML+=`
+
+<div class="product-card loading-card">
+
+<div class="loading-image"></div>
+
+<div class="loading-text"></div>
+
+<div class="loading-text short"></div>
+
+<div class="loading-button"></div>
+
+</div>
+
+`;
+
+}
+
+}
+
+/*==============================
+Refresh Products
+==============================*/
+
+function refreshProducts(){
+
+currentPage=1;
+
+renderProducts(filteredProducts);
+
+}
+
+/*==============================
+Firebase Ready
+==============================*/
+
+// Future Firebase Integration
+// Replace loadProducts()
+// with Firestore Query
+
+/*
+import {
+
+collection,
+
+getDocs
+
+}
+
+from "firebase/firestore";
+
+*/
+
+/*==============================
+Initialize
+==============================*/
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+showLoading();
+
+setTimeout(()=>{
+
+loadProducts();
+
+},500);
+
+});
+
+/*==============================
+Performance
+==============================*/
+
+window.addEventListener("pageshow",()=>{
+
+if(typeof updateCartCount==="function"){
+
+updateCartCount();
+
+}
+
+});
+
+/*==============================
+Console
+==============================*/
+
+console.log(
+
+"%cProducts System Loaded",
+
+"color:#16a34a;font-size:16px;font-weight:bold;"
+
+);
+
+/*==============================
+Products JS Complete
+==============================*/
