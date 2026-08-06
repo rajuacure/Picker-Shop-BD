@@ -368,3 +368,252 @@ status:"Pending",
 createdAt:serverTimestamp()
 
 };
+/*=========================================
+Save Order To Firebase
+=========================================*/
+
+const placeOrderBtn =
+document.getElementById("placeOrderBtn");
+
+try {
+
+if(placeOrderBtn){
+
+placeOrderBtn.disabled = true;
+
+placeOrderBtn.classList.add("loading");
+
+placeOrderBtn.innerHTML = `
+<i class="fas fa-spinner fa-spin"></i>
+Processing Order...
+`;
+
+}
+
+/*=========================================
+Create Order In Firestore
+=========================================*/
+
+const orderRef = await addDoc(
+
+collection(db, "orders"),
+
+order
+
+);
+
+/*=========================================
+Prepare Success Data
+=========================================*/
+
+const successData = {
+
+firestoreId: orderRef.id,
+
+orderId: order.orderId,
+
+customerName: order.customer.name,
+
+phone: order.customer.phone,
+
+paymentMethod: order.paymentMethod,
+
+subtotal: order.subtotal,
+
+deliveryCharge: order.deliveryCharge,
+
+discount: order.discount,
+
+grandTotal: order.grandTotal,
+
+status: order.status
+
+};
+
+/*=========================================
+Save Last Order Locally
+=========================================*/
+
+localStorage.setItem(
+
+"picker_last_order",
+
+JSON.stringify(successData)
+
+);
+
+/*=========================================
+Clear Shopping Cart
+=========================================*/
+
+cart = [];
+
+localStorage.removeItem("picker_cart");
+
+/*=========================================
+Redirect To Success Page
+=========================================*/
+
+window.location.href =
+
+"order-success.html?order=" +
+
+encodeURIComponent(order.orderId);
+
+} catch(error) {
+
+console.error(
+
+"Order creation failed:",
+
+error
+
+);
+
+alert(
+
+"Order could not be placed. Please try again."
+
+);
+
+if(placeOrderBtn){
+
+placeOrderBtn.disabled = false;
+
+placeOrderBtn.classList.remove("loading");
+
+placeOrderBtn.innerHTML = `
+<i class="fas fa-lock"></i>
+Place Order
+`;
+
+}
+
+}
+
+}
+
+);
+
+/*=========================================
+Phone Validation
+=========================================*/
+
+const phoneInput =
+document.getElementById("customerPhone");
+
+if(phoneInput){
+
+phoneInput.addEventListener("input",()=>{
+
+phoneInput.value =
+
+phoneInput.value.replace(/[^0-9+]/g,"");
+
+});
+
+}
+
+/*=========================================
+Prevent Checkout With Empty Cart
+=========================================*/
+
+function checkEmptyCart(){
+
+if(cart.length > 0){
+
+return;
+
+}
+
+if(checkoutItems){
+
+checkoutItems.innerHTML = `
+
+<div class="empty-checkout">
+
+<p>Your shopping cart is empty.</p>
+
+<a href="products.html" class="btn">
+Shop Now
+</a>
+
+</div>
+
+`;
+
+}
+
+if(placeOrderBtn){
+
+placeOrderBtn.disabled = true;
+
+}
+
+}
+
+/*=========================================
+Update Header Cart Count
+=========================================*/
+
+function updateCheckoutCartCount(){
+
+const count = cart.reduce(
+
+(total,item)=>
+
+total + Number(item.quantity || 0),
+
+0
+
+);
+
+document
+
+.querySelectorAll(".cart-count")
+
+.forEach(element=>{
+
+element.textContent = count;
+
+});
+
+}
+
+/*=========================================
+Initialize Checkout
+=========================================*/
+
+function initCheckout(){
+
+renderCheckout();
+
+checkEmptyCart();
+
+updateCheckoutCartCount();
+
+}
+
+document.addEventListener(
+
+"DOMContentLoaded",
+
+initCheckout
+
+);
+
+/*=========================================
+Checkout Ready
+=========================================*/
+
+console.log(
+
+"%cPicker Shop BD Checkout Ready",
+
+"color:#16a34a;font-size:15px;font-weight:bold;"
+
+);
+
+/*=========================================
+End Checkout System
+=========================================*/
