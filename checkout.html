@@ -222,3 +222,294 @@ placeholder="House, Road, Area, Upazila">
 </textarea>
 
 </div>
+<!--========== Delivery Method ==========-->
+
+<h2>
+
+Delivery Method
+
+</h2>
+
+<div class="payment-methods">
+
+<label class="payment-option">
+
+<input
+
+type="radio"
+
+name="delivery"
+
+value="inside"
+
+checked>
+
+<span>
+
+Inside Dhaka (৳80)
+
+</span>
+
+</label>
+
+<label class="payment-option">
+
+<input
+
+type="radio"
+
+name="delivery"
+
+value="outside">
+
+<span>
+
+Outside Dhaka (৳150)
+
+</span>
+
+</label>
+
+</div>
+
+<!--========== Payment Method ==========-->
+
+<h2>
+
+Payment Method
+
+</h2>
+
+<div class="payment-methods">
+
+<label class="payment-option">
+
+<input
+
+type="radio"
+
+name="payment"
+
+value="cod"
+
+checked>
+
+<span>
+
+Cash On Delivery
+
+</span>
+
+</label>
+
+<label class="payment-option">
+
+<input
+
+type="radio"
+
+name="payment"
+
+value="bkash">
+
+<span>
+
+bKash
+
+</span>
+
+</label>
+
+<label class="payment-option">
+
+<input
+
+type="radio"
+
+name="payment"
+
+value="nagad">
+
+<span>
+
+Nagad
+
+</span>
+
+</label>
+
+<label class="payment-option">
+
+<input
+
+type="radio"
+
+name="payment"
+
+value="rocket">
+
+<span>
+
+Rocket
+
+</span>
+
+</label>
+
+</div>
+
+</form>
+
+</div>
+
+<!--========== Order Summary ==========-->
+
+<aside class="cart-summary">
+
+<h2>
+
+Order Summary
+
+</h2>
+
+<div id="checkoutItems">
+
+<!-- Dynamic Order Items -->
+
+</div>
+
+<div class="summary-item">
+
+<span>
+
+Subtotal
+
+</span>
+
+<strong id="checkoutSubtotal">
+
+৳0
+
+</strong>
+
+</div>
+
+<div class="summary-item">
+
+<span>
+
+Delivery Charge
+
+</span>
+
+<strong id="checkoutDelivery">
+
+৳80
+
+</strong>
+
+</div>
+
+<div class="summary-item">
+
+<span>
+
+Discount
+
+</span>
+
+<strong id="checkoutDiscount">
+
+৳0
+
+</strong>
+
+</div>
+
+<div class="summary-item total">
+
+<span>
+
+Grand Total
+
+</span>
+
+<strong id="checkoutGrandTotal">
+
+৳0
+
+</strong>
+
+</div>
+
+<!--========== Coupon ==========-->
+
+<div class="coupon-box">
+
+<h3>
+
+Coupon Code
+
+</h3>
+
+<div class="coupon-form">
+
+<input
+
+type="text"
+
+id="checkoutCoupon"
+
+placeholder="Enter Coupon">
+
+<button
+
+type="button"
+
+id="applyCheckoutCoupon"
+
+class="btn">
+
+Apply
+
+</button>
+
+</div>
+
+<p id="checkoutCouponMessage"></p>
+
+</div>
+
+<!--========== Place Order ==========-->
+
+<button
+
+type="submit"
+
+form="checkoutForm"
+
+id="placeOrderBtn"
+
+class="btn checkout-btn">
+
+<i class="fas fa-lock"></i>
+
+Place Order
+
+</button>
+
+<p class="secure-checkout">
+
+<i class="fas fa-shield-alt"></i>
+
+Your payment information is secure.
+
+</p>
+
+</aside>
+
+</div>
+
+</div>
+
+</section>
