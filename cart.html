@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shopping Cart | Picker Shop BD</title>
+
+<meta name="description" content="Shopping Cart - Picker Shop BD">
+
+<meta name="theme-color" content="#16a34a">
+
+<link rel="icon" href="images/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="css/cart.css">
+
+<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<!--========== Preloader ==========-->
+
+<div id="preloader">
+
+<div class="loader"></div>
+
+</div>
+
+<!--========== Header ==========-->
+
+<header class="header">
+
+<div class="container">
+
+<a href="index.html" class="logo">
+
+<img src="images/logo.png" alt="Picker Shop BD">
+
+</a>
+
+<nav class="navbar">
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="products.html">Products</a></li>
+
+<li><a href="cart.html" class="active">Cart</a></li>
+
+<li><a href="dashboard.html">Dashboard</a></li>
+
+</ul>
+
+</nav>
+
+<div class="header-icons">
+
+<a href="wishlist.html">
+
+<i class="far fa-heart"></i>
+
+</a>
+
+<a href="cart.html" class="cart-icon">
+
+<i class="fas fa-shopping-cart"></i>
+
+<span class="cart-count">
+
+0
+
+</span>
+
+</a>
+
+</div>
+
+</div>
+
+</header>
+
+<!--========== Page Banner ==========-->
+
+<section class="page-banner">
+
+<div class="container">
+
+<h1>
+
+Shopping Cart
+
+</h1>
+
+<nav class="breadcrumb">
+
+<a href="index.html">
+
+Home
+
+</a>
+
+<span>/</span>
+
+<span>
+
+Shopping Cart
+
+</span>
+
+</nav>
+
+</div>
+
+</section>
+
+<!--========== Cart Section ==========-->
+
+<section class="cart-page">
+
+<div class="container">
+
+<div class="cart-layout">
+
+<!--========== Left Side ==========-->
+
+<div class="cart-items">
+
+<div class="cart-header">
+
+<div>Product</div>
+
+<div>Price</div>
+
+<div>Quantity</div>
+
+<div>Total</div>
+
+<div>Remove</div>
+
+</div>
+
+<div id="cartItemsContainer">
+
+<!-- Dynamic Cart Items -->
+
+</div>
+
+<div id="emptyCart" class="empty-cart" style="display:none;">
+
+<img src="images/empty-cart.png" alt="Empty Cart">
+
+<h2>Your Cart is Empty</h2>
+
+<p>
+
+Looks like you haven't added any products yet.
+
+</p>
+
+<a href="products.html" class="btn">
+
+Continue Shopping
+
+</a>
+
+</div>
+
+</div>
+
+<!--========== Right Side ==========-->
+
+<aside class="cart-summary">
+
+<h2>
+
+Cart Summary
+
+</h2>
+
+<div class="summary-item">
+
+<span>
+
+Subtotal
+
+</span>
+
+<strong id="cartSubtotal">
+
+৳0
+
+</strong>
+
+</div>
+
+<div class="summary-item">
+
+<span>
+
+Delivery
+
+</span>
+
+<strong id="deliveryCharge">
+
+৳0
+
+</strong>
+
+</div>
+
+<div class="summary-item total">
+
+<span>
+
+Grand Total
+
+</span>
+
+<strong id="grandTotal">
+
+৳0
+
+</strong>
+
+</div>
