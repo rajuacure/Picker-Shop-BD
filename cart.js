@@ -466,3 +466,198 @@ message.textContent=
 });
 
 }
+/*=========================================
+Firebase Product Sync
+=========================================*/
+
+async function getProduct(productId){
+
+try{
+
+const ref = doc(db,"products",productId);
+
+const snap = await getDoc(ref);
+
+if(snap.exists()){
+
+return{
+
+id:snap.id,
+
+...snap.data()
+
+};
+
+}
+
+return null;
+
+}catch(error){
+
+console.error(error);
+
+return null;
+
+}
+
+}
+
+/*=========================================
+Recommended Products
+=========================================*/
+
+const recommendedContainer =
+document.getElementById("recommendedProducts");
+
+async function loadRecommendedProducts(){
+
+if(!recommendedContainer) return;
+
+recommendedContainer.innerHTML = "";
+
+const ids = [...new Set(cart.map(item=>item.id))];
+
+for(const id of ids){
+
+const product = await getProduct(id);
+
+if(!product) continue;
+
+recommendedContainer.innerHTML += `
+
+<div class="product-card">
+
+<img src="${product.image}" alt="${product.name}">
+
+<h3>${product.name}</h3>
+
+<p>৳${Number(product.price).toFixed(2)}</p>
+
+<a href="products.html" class="btn">
+
+View Product
+
+</a>
+
+</div>
+
+`;
+
+}
+
+}
+
+/*=========================================
+Checkout Button
+=========================================*/
+
+const checkoutButton =
+document.querySelector(".checkout-btn");
+
+if(checkoutButton){
+
+checkoutButton.addEventListener("click",(e)=>{
+
+if(cart.length===0){
+
+e.preventDefault();
+
+alert("Your cart is empty.");
+
+return;
+
+}
+
+window.location.href="checkout.html";
+
+});
+
+}
+
+/*=========================================
+Continue Shopping
+=========================================*/
+
+document.querySelectorAll(".continue-shopping").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+window.location.href="products.html";
+
+});
+
+});
+
+/*=========================================
+Restore Cart
+=========================================*/
+
+function restoreCart(){
+
+cart = JSON.parse(
+
+localStorage.getItem("picker_cart")
+
+) || [];
+
+}
+
+/*=========================================
+Init Cart
+=========================================*/
+
+function initCart(){
+
+restoreCart();
+
+updateCartCount();
+
+renderCart();
+
+loadRecommendedProducts();
+
+}
+
+document.addEventListener(
+
+"DOMContentLoaded",
+
+initCart
+
+);
+
+/*=========================================
+Export Helpers
+=========================================*/
+
+window.cartService={
+
+addToCart,
+
+removeItem,
+
+increaseQty,
+
+decreaseQty,
+
+renderCart,
+
+saveCart
+
+};
+
+/*=========================================
+Cart Ready
+=========================================*/
+
+console.log(
+
+"%cPicker Shop BD Cart Ready",
+
+"color:#16a34a;font-size:15px;font-weight:bold;"
+
+);
+
+/*=========================================
+End Cart System
+=========================================*/
