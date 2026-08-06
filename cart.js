@@ -209,3 +209,260 @@ totalElement.textContent =
 "৳"+total.toFixed(2);
 
 }
+/*=========================================
+Render Cart
+=========================================*/
+
+function renderCart(){
+
+if(!cartContainer) return;
+
+cartContainer.innerHTML="";
+
+if(cart.length===0){
+
+if(emptyCart){
+
+emptyCart.style.display="block";
+
+}
+
+calculateTotals();
+
+updateCartCount();
+
+return;
+
+}
+
+if(emptyCart){
+
+emptyCart.style.display="none";
+
+}
+
+cart.forEach(item=>{
+
+cartContainer.innerHTML += `
+
+<div class="cart-item">
+
+<div class="product-info">
+
+<img src="${item.image}" alt="${item.name}">
+
+<div class="product-details">
+
+<h4>${item.name}</h4>
+
+<p>${item.category || ""}</p>
+
+</div>
+
+</div>
+
+<div class="product-price">
+
+৳${Number(item.price).toFixed(2)}
+
+</div>
+
+<div class="quantity-box">
+
+<button
+
+class="quantity-btn decrease-btn"
+
+data-id="${item.id}">
+
+-
+
+</button>
+
+<input
+
+class="quantity-input"
+
+type="text"
+
+value="${item.quantity}"
+
+readonly>
+
+<button
+
+class="quantity-btn increase-btn"
+
+data-id="${item.id}">
+
++
+
+</button>
+
+</div>
+
+<div class="product-price">
+
+৳${(item.price*item.quantity).toFixed(2)}
+
+</div>
+
+<button
+
+class="remove-btn"
+
+data-id="${item.id}">
+
+<i class="fas fa-trash"></i>
+
+</button>
+
+</div>
+
+`;
+
+});
+
+bindCartEvents();
+
+calculateTotals();
+
+updateCartCount();
+
+}
+
+/*=========================================
+Bind Events
+=========================================*/
+
+function bindCartEvents(){
+
+document.querySelectorAll(".increase-btn").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+increaseQty(btn.dataset.id);
+
+});
+
+});
+
+document.querySelectorAll(".decrease-btn").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+decreaseQty(btn.dataset.id);
+
+});
+
+});
+
+document.querySelectorAll(".remove-btn").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+removeItem(btn.dataset.id);
+
+});
+
+});
+
+}
+
+/*=========================================
+Clear Cart
+=========================================*/
+
+const clearCartBtn=
+
+document.getElementById("clearCart");
+
+if(clearCartBtn){
+
+clearCartBtn.addEventListener("click",()=>{
+
+if(confirm("Clear your shopping cart?")){
+
+cart=[];
+
+saveCart();
+
+renderCart();
+
+}
+
+});
+
+}
+
+/*=========================================
+Coupon System
+=========================================*/
+
+const couponBtn=
+
+document.getElementById("applyCoupon");
+
+if(couponBtn){
+
+couponBtn.addEventListener("click",()=>{
+
+const code=
+
+document.getElementById("couponCode")
+
+.value
+
+.trim()
+
+.toUpperCase();
+
+const message=
+
+document.getElementById("couponMessage");
+
+if(code==="PICKER10"){
+
+message.style.color="#16a34a";
+
+message.textContent=
+
+"Coupon Applied (10% Discount)";
+
+let subtotal=cart.reduce(
+
+(sum,item)=>sum+(item.price*item.quantity),
+
+0
+
+);
+
+let delivery=subtotal>2000?0:120;
+
+let discount=subtotal*0.10;
+
+subtotalElement.textContent=
+
+"৳"+subtotal.toFixed(2);
+
+deliveryElement.textContent=
+
+"৳"+delivery.toFixed(2);
+
+totalElement.textContent=
+
+"৳"+(subtotal-discount+delivery).toFixed(2);
+
+}else{
+
+message.style.color="#dc2626";
+
+message.textContent=
+
+"Invalid Coupon Code";
+
+}
+
+});
+
+}
