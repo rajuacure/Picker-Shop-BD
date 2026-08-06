@@ -165,3 +165,206 @@ updateSummary(subtotal);
 });
 
 });
+/*=========================================
+Coupon System
+=========================================*/
+
+const couponButton =
+document.getElementById("applyCheckoutCoupon");
+
+if(couponButton){
+
+couponButton.addEventListener("click",()=>{
+
+const couponInput =
+document.getElementById("checkoutCoupon");
+
+const message =
+document.getElementById("checkoutCouponMessage");
+
+const code =
+couponInput.value.trim().toUpperCase();
+
+const subtotal = cart.reduce(
+
+(sum,item)=>sum+(item.price*item.quantity),
+
+0
+
+);
+
+discount = 0;
+
+if(code==="PICKER10"){
+
+discount = subtotal * 0.10;
+
+message.style.color="#16a34a";
+
+message.textContent="10% discount applied successfully.";
+
+}else if(code==="FREESHIP"){
+
+deliveryCharge = 0;
+
+message.style.color="#16a34a";
+
+message.textContent="Free delivery applied.";
+
+}else{
+
+message.style.color="#dc2626";
+
+message.textContent="Invalid coupon code.";
+
+}
+
+updateSummary(subtotal);
+
+});
+
+}
+
+/*=========================================
+Generate Order ID
+=========================================*/
+
+function generateOrderId(){
+
+const now = Date.now();
+
+const random =
+
+Math.floor(Math.random()*9000)+1000;
+
+return "PSBD-"+now+"-"+random;
+
+}
+
+/*=========================================
+Checkout Form
+=========================================*/
+
+const checkoutForm =
+document.getElementById("checkoutForm");
+
+checkoutForm.addEventListener(
+
+"submit",
+
+async(e)=>{
+
+e.preventDefault();
+
+const name =
+document.getElementById("customerName").value.trim();
+
+const phone =
+document.getElementById("customerPhone").value.trim();
+
+const email =
+document.getElementById("customerEmail").value.trim();
+
+const district =
+document.getElementById("customerDistrict").value.trim();
+
+const address =
+document.getElementById("customerAddress").value.trim();
+
+const payment =
+
+document.querySelector(
+
+'input[name="payment"]:checked'
+
+).value;
+
+const delivery =
+
+document.querySelector(
+
+'input[name="delivery"]:checked'
+
+).value;
+
+if(
+
+!name ||
+
+!phone ||
+
+!district ||
+
+!address
+
+){
+
+alert("Please fill all required fields.");
+
+return;
+
+}
+
+if(cart.length===0){
+
+alert("Your cart is empty.");
+
+return;
+
+}
+
+const subtotal = cart.reduce(
+
+(sum,item)=>
+
+sum+(item.price*item.quantity),
+
+0
+
+);
+
+const total =
+
+subtotal +
+
+deliveryCharge -
+
+discount;
+
+const order = {
+
+orderId:generateOrderId(),
+
+customer:{
+
+name,
+
+phone,
+
+email,
+
+district,
+
+address
+
+},
+
+paymentMethod:payment,
+
+deliveryType:delivery,
+
+products:cart,
+
+subtotal,
+
+deliveryCharge,
+
+discount,
+
+grandTotal:total,
+
+status:"Pending",
+
+createdAt:serverTimestamp()
+
+};
